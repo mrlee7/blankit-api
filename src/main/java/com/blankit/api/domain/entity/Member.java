@@ -1,5 +1,6 @@
 package com.blankit.api.domain.entity;
 
+import com.blankit.api.domain.entity.payment.PaymentInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,6 @@ import javax.persistence.*;
 public class Member {
 
     @Id @GeneratedValue
-    @Column(name = "member_id")
     private Long id;
 
     @OneToOne
