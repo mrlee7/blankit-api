@@ -1,6 +1,5 @@
 package com.blankit.api.domain.entity.payment;
 
-import com.blankit.api.domain.entity.payment.PaymentInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,17 +9,14 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class PaymentInfoHistory {
+public class PaymentHistory {
 
     @Id @GeneratedValue
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "payment_info_id")
-    private PaymentInfo paymentInfo;
-
-    @Column(name = "payment_id")
-    private Long paymentId;
+    @JoinColumn(name = "PAYMENT_ID", foreignKey = @ForeignKey(name = "FK_PAYMENT_HISTORY_PAYMENT"))
+    private Payment payment;
 
     @Column(name = "created_date")
     private LocalDateTime createdDate;

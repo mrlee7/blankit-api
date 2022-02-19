@@ -15,15 +15,16 @@ import java.time.LocalDateTime;
 public class MemberAuth {
 
     @Id @GeneratedValue
+    @Column(name = "MEMBER_AUTH_ID")
     private Long id;
 
-    @Column(name = "auth_token")
+    @Column(name = "AUTH_TOKEN")
     private String authToken;
 
-    @Column(name = "created_date")
+    @Column(name = "CREATED_DATE")
     private LocalDateTime createdDate;
 
-    @Column(name = "modified_date")
+    @Column(name = "MODIFIED_DATE")
     private LocalDateTime modifiedDate;
 
 }

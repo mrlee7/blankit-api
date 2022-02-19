@@ -1,7 +1,6 @@
 package com.blankit.api.domain.entity.payment;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,25 +8,22 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "payment_type")
-public class PaymentInfo {
+@DiscriminatorColumn(name = "PAYMENT_TYPE")
+public class Payment {
 
     @Id
     @GeneratedValue
+    @Column(name = "PAYMENT_ID")
     private Long id;
 
-    @Column(name = "payment_date")
+    @Column(name = "PAYMENT_DATE")
     private LocalDateTime paymentDate;
 
-    @Column(name = "payment_key")
+    @Column(name = "PAYMENT_KEY")
     private String paymentKey;
 
-    @Column(name = "payment_id")
-    private String paymentId;
-
-    @OneToMany(mappedBy = "paymentInfo")
-    private List<PaymentInfoHistory> paymentInfoHistories;
+    @OneToMany(mappedBy = "payment")
+    private List<PaymentHistory> paymentInfoHistories;
 
 }
