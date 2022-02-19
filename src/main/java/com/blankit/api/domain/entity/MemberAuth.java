@@ -1,7 +1,6 @@
 package com.blankit.api.domain.entity;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
 public class MemberAuth {
 
     @Id @GeneratedValue

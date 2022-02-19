@@ -2,13 +2,11 @@ package com.blankit.api.domain.entity;
 
 import com.blankit.api.domain.entity.payment.Payment;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 public class Member {
 
     @Id @GeneratedValue
