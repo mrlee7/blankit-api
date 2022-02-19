@@ -1,7 +1,6 @@
 package com.blankit.api.domain.entity;
 
 import com.blankit.api.domain.entity.converter.BooleanToYNConverter;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
@@ -17,14 +16,13 @@ public class MemberStudyGroup {
     private Long id;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_MEMBER_MEMBER_STUDY_GROUP"))
+    @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_MEMBER_MEMBERSTUDYGROUP"))
     private Member member;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "STUDY_GROUP_ID", foreignKey = @ForeignKey(name = "FK_STUDY_GROUP_MEMBER_STUDY_GROUP"))
+    @JoinColumn(name = "STUDY_GROUP_ID", foreignKey = @ForeignKey(name = "FK_STUDYGROUP_MEMBERSTUDYGROUP"))
     private StudyGroup studyGroup;
 
     @Convert(converter = BooleanToYNConverter.class)
-    @Audited
     private boolean isActive;
 }
