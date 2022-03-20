@@ -28,7 +28,7 @@ public class Comment {
     
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_COMMENT_MEMBER"))
-    private Member member;
+    private Member writerId;
 
     @ManyToOne
     @JoinColumn(name = "TASK_ID", foreignKey = @ForeignKey(name = "FK_COMMENT_TASK"))

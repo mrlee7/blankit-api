@@ -29,8 +29,9 @@ public class Task {
     @Column(nullable = false)
     private LocalDateTime endDate;
 
-    @Column(nullable = false)
-    private String approverId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_TASK_MEMBER"))
+    private Member approverId;
 
     @Convert(converter = BooleanToYNConverter.class)
     @Column(nullable = false)
@@ -39,6 +40,8 @@ public class Task {
     @Column(nullable = false)
     private int deposit;
 
-    @Column(nullable = false)
-    private String drafterId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_TASK_MEMBER"))
+    private Member drafterId;
 }
+
