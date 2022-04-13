@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 public class PaymentHistory {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
