@@ -1,12 +1,15 @@
 package com.blankit.api.domain.entity;
 
 import com.blankit.api.domain.entity.payment.Payment;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +30,12 @@ public class Member {
     @Column(name = "NICKNAME", nullable = false)
     private String nickname;
 
+    @Builder
+    private Member(Long id, MemberAuth memberAuth, Payment payment, String email, String nickname) {
+        this.id = id;
+        this.memberAuth = memberAuth;
+        this.payment = payment;
+        this.email = email;
+        this.nickname = nickname;
+    }
 }
