@@ -10,9 +10,13 @@ import java.time.LocalDateTime;
 public class Task {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TASK_ID")
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sprint_id", foreignKey = @ForeignKey(name = "fk_sprint_task"))
+    private Sprint sprint;
 
     @Column(nullable = false)
     private String taskTitle;
@@ -30,8 +34,8 @@ public class Task {
     private LocalDateTime endDate;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_TASK_MEMBER"))
-    private Member approverId;
+    @JoinColumn(name = "APPROVER_ID", foreignKey = @ForeignKey(name = "FK_TASK_APPROVER"))
+    private Member approver;
 
     @Convert(converter = BooleanToYNConverter.class)
     @Column(nullable = false)
@@ -41,7 +45,7 @@ public class Task {
     private int deposit;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_TASK_MEMBER"))
-    private Member drafterId;
+    @JoinColumn(name = "DRAFTER_ID", foreignKey = @ForeignKey(name = "FK_TASK_DRAFTER"))
+    private Member drafter;
 }
 

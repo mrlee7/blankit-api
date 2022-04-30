@@ -9,7 +9,7 @@ import java.util.List;
 public class StudyGroup {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STUDY_GROUP_ID")
     private Long id;
 
