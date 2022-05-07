@@ -1,0 +1,13 @@
+### 스터디 그룹 생성
+POST {{host}}/studygroup
+Content-Type: application/json
+
+{
+  "name": "study-group01"
+}
+
+> {%
+client.test("정상 응답", function() {
+    client.assert(response.status == 200, "Error");
+})
+%}
