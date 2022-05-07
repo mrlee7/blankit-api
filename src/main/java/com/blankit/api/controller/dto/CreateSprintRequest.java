@@ -1,12 +1,12 @@
 package com.blankit.api.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
-@RequiredArgsConstructor
 public class CreateSprintRequest {
 
     private final String name;
@@ -15,4 +15,12 @@ public class CreateSprintRequest {
 
     private final LocalDateTime endAt;
 
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public CreateSprintRequest(@JsonProperty("name") String name,
+                               @JsonProperty("startAt") LocalDateTime startAt,
+                               @JsonProperty("endAt") LocalDateTime endAt) {
+        this.name = name;
+        this.startAt = startAt;
+        this.endAt = endAt;
+    }
 }
