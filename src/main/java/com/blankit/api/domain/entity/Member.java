@@ -30,6 +30,9 @@ public class Member {
     @Column(name = "NICKNAME", nullable = false)
     private String nickname;
 
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
+
     @Builder
     private Member(Long id, MemberAuth memberAuth, Payment payment, String email, String nickname) {
         this.id = id;
