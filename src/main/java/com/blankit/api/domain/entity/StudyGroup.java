@@ -1,10 +1,16 @@
 package com.blankit.api.domain.entity;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@NoArgsConstructor
 @Table(name = "STUDY_GROUP")
 public class StudyGroup {
 
@@ -21,5 +27,17 @@ public class StudyGroup {
 
     @OneToMany(mappedBy = "studyGroup")
     private List<MemberStudyGroup> memberStudyGroups = new ArrayList<>();
+
+    @OneToMany(mappedBy = "studyGroup")
+    private List<Sprint> sprints = new ArrayList<>();
+
+    @Builder
+    public StudyGroup(Long id, String studyGroupName, String endPoint, List<MemberStudyGroup> memberStudyGroups, List<Sprint> sprints) {
+        this.id = id;
+        this.studyGroupName = studyGroupName;
+        this.endPoint = endPoint;
+        this.memberStudyGroups = memberStudyGroups;
+        this.sprints = sprints;
+    }
 }
 
