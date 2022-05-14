@@ -1,11 +1,17 @@
 package com.blankit.api.domain.entity;
 
 import com.blankit.api.domain.entity.converter.BooleanToYNConverter;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "TASK")
 public class Task {
 
@@ -19,10 +25,10 @@ public class Task {
     private Sprint sprint;
 
     @Column(nullable = false)
-    private String taskTitle;
+    private String title;
 
     @Column(nullable = false)
-    private String taskContents;
+    private String contents;
 
     @Column(nullable = false)
     private LocalDateTime createdDate;
@@ -39,7 +45,7 @@ public class Task {
 
     @Convert(converter = BooleanToYNConverter.class)
     @Column(nullable = false)
-    private boolean isTaskSuccess;
+    private boolean isSuccess;
 
     @Column(nullable = false)
     private int deposit;
@@ -47,5 +53,27 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "DRAFTER_ID", foreignKey = @ForeignKey(name = "FK_TASK_DRAFTER"))
     private Member drafter;
+
+    @Builder
+    public Task(Long id, String title, String contents, LocalDateTime createdDate,
+                LocalDateTime startDate, LocalDateTime endDate, Member approver, boolean isSuccess,
+                int deposit, Member drafter) {
+        this.id = id;
+        this.title = title;
+        this.contents = contents;
+        this.createdDate = createdDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.approver = approver;
+        this.isSuccess = isSuccess;
+        this.deposit = deposit;
+        this.drafter = drafter;
+    }
+
+    public void updateSprint(Sprint sprint) {
+        this.sprint = sprint;
+        sprint.getTasks().add(this);
+    }
+
 }
 

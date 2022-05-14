@@ -25,4 +25,5 @@ public class StudyGroupService {
     private String generateEndPoint() {
         return "http://endpoint.com";
     }
+
 }
