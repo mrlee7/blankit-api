@@ -21,7 +21,6 @@ public class SprintService {
 
     private final StudyGroupRepository studyGroupRepository;
 
-
     public Long create(String name, Long studyGroupId, LocalDateTime startAt, LocalDateTime endAt) throws Exception {
 
         StudyGroup studyGroup = studyGroupRepository.findById(studyGroupId).orElseThrow(() -> new Exception("스터디 그룹 없음"));
@@ -40,7 +39,7 @@ public class SprintService {
     public Sprint getOne(Long studyGroupId, Long sprintId) throws Exception {
         return sprintRepository
                 .findBySprintIdAndStudyGroupId(sprintId, studyGroupId)
-                .orElseThrow(() -> new Exception());
+                .orElseThrow(Exception::new);
     }
 
     @Transactional(readOnly = true)
