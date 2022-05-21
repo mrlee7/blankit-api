@@ -6,12 +6,15 @@ import lombok.RequiredArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 
 @Getter
-@RequiredArgsConstructor
 public class CreateSprintRequest {
-
+  
     @NotBlank(message = "스프린트 이름을 입력해주세요.")
     @Pattern(
             regexp = "^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,50}$"
@@ -23,4 +26,12 @@ public class CreateSprintRequest {
 
     private final LocalDateTime endAt;
 
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public CreateSprintRequest(@JsonProperty("name") String name,
+                               @JsonProperty("startAt") LocalDateTime startAt,
+                               @JsonProperty("endAt") LocalDateTime endAt) {
+        this.name = name;
+        this.startAt = startAt;
+        this.endAt = endAt;
+    }
 }

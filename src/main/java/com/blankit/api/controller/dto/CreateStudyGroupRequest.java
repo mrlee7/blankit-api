@@ -21,5 +21,4 @@ public class CreateStudyGroupRequest {
     public CreateStudyGroupRequest(@JsonProperty("name") String name) {
         this.name = name;
     }
-
 }
