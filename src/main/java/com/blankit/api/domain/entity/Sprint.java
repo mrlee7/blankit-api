@@ -15,7 +15,7 @@ import java.util.List;
 public class Sprint {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SPRINT_ID")
+    @Column(name = "sprint_id")
     private Long id;
 
     @Column

@@ -10,16 +10,16 @@ import java.time.LocalDateTime;
 public class MemberAuth {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MEMBER_AUTH_ID")
+    @Column(name = "member_auth_id")
     private Long id;
 
-    @Column(name = "AUTH_TOKEN")
+    @Column(name = "auth_token")
     private String authToken;
 
-    @Column(name = "CREATED_DATE")
+    @Column(name = "created_date")
     private LocalDateTime createdDate;
 
-    @Column(name = "MODIFIED_DATE")
+    @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
 
 }

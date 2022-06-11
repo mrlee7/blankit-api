@@ -11,12 +11,12 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "STUDY_GROUP")
+@Table(name = "study_group")
 public class StudyGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "STUDY_GROUP_ID")
+    @Column(name = "study_group_id")
     private Long id;
 
     @Column(nullable = false)

@@ -12,16 +12,16 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "TASK")
+@Table(name = "task")
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TASK_ID")
+    @Column(name = "task_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sprint_id", foreignKey = @ForeignKey(name = "fk_sprint_task"))
+    @JoinColumn(name = "sprint_id", foreignKey = @ForeignKey(name = "FK_SPRINT_TASK"))
     private Sprint sprint;
 
     @Column(nullable = false)
@@ -40,7 +40,7 @@ public class Task {
     private LocalDateTime endDate;
 
     @ManyToOne
-    @JoinColumn(name = "APPROVER_ID", foreignKey = @ForeignKey(name = "FK_TASK_APPROVER"))
+    @JoinColumn(name = "approver_id", foreignKey = @ForeignKey(name = "FK_TASK_APPROVER"))
     private Member approver;
 
     @Convert(converter = BooleanToYNConverter.class)
@@ -51,7 +51,7 @@ public class Task {
     private int deposit;
 
     @ManyToOne
-    @JoinColumn(name = "DRAFTER_ID", foreignKey = @ForeignKey(name = "FK_TASK_DRAFTER"))
+    @JoinColumn(name = "drafter_id", foreignKey = @ForeignKey(name = "FK_TASK_DRAFTER"))
     private Member drafter;
 
     @Builder

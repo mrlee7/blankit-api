@@ -1,9 +1,21 @@
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
-    url: jdbc:h2:mem:test;MODE=MYSQL
+    url: jdbc:mysql://localhost:3306/blankit?serverTimezone=Asia/Seoul
+    username: blankitadmin
+    password: asdf1234!
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: none
     show-sql: true
+    defer-datasource-initialization: true
+  flyway:
+    locations: classpath:db/migration
+    sql-migration-suffixes: .sql
+    baseline-on-migrate: true
+    baseline-version: 0
