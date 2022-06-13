@@ -25,7 +25,7 @@ public class SwaggerConfig {
                 .produces(getProduceContentTypes())
                 .apiInfo(getApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.blankit.api"))
+                .apis(RequestHandlerSelectors.basePackage("com.blankit.api.controller"))
                 .paths(PathSelectors.ant("/**"))
                 .build();
     }

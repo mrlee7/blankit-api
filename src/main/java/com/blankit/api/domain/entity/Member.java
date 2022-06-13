@@ -13,21 +13,21 @@ import javax.persistence.*;
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MEMBER_ID")
+    @Column(name = "member_id")
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "MEMBER_AUTH_ID", foreignKey = @ForeignKey(name = "FK_MEMBER_MEMBER_AUTH"))
+    @JoinColumn(name = "member_auth_id", foreignKey = @ForeignKey(name = "FK_MEMBER_MEMBER_AUTH"))
     private MemberAuth memberAuth;
 
     @OneToOne
-    @JoinColumn(name = "PAYMENT_ID", foreignKey = @ForeignKey(name = "FK_MEMBER_PAYMENT"))
+    @JoinColumn(name = "payment_id", foreignKey = @ForeignKey(name = "FK_MEMBER_PAYMENT"))
     private Payment payment;
 
-    @Column(name = "EMAIL", nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "NICKNAME", nullable = false)
+    @Column(name = "nickname", nullable = false)
     private String nickname;
 
     @Builder

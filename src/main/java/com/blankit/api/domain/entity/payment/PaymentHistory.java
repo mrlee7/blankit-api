@@ -10,11 +10,12 @@ import java.time.LocalDateTime;
 @Getter
 public class PaymentHistory {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "PAYMENT_ID", foreignKey = @ForeignKey(name = "FK_PAYMENT_HISTORY_PAYMENT"))
+    @JoinColumn(name = "payment_id", foreignKey = @ForeignKey(name = "FK_PAYMENT_HISTORY_PAYMENT"))
     private Payment payment;
 
     @Column(name = "created_date")

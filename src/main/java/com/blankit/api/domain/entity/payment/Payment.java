@@ -9,18 +9,18 @@ import java.util.List;
 @Entity
 @Getter
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "PAYMENT_TYPE")
+@DiscriminatorColumn(name = "payment_type")
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PAYMENT_ID")
+    @Column(name = "payment_id")
     private Long id;
 
-    @Column(name = "PAYMENT_DATE")
+    @Column(name = "payment_date")
     private LocalDateTime paymentDate;
 
-    @Column(name = "PAYMENT_KEY")
+    @Column(name = "payment_key")
     private String paymentKey;
 
     @OneToMany(mappedBy = "payment")
