@@ -2,11 +2,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-  sql:
-    init:
-      mode: always
   datasource:
-    url: jdbc:mysql://localhost:3306/blankit
+    url: jdbc:mysql://localhost:3306/blankit?serverTimezone=Asia/Seoul
     username: blankitadmin
     password: asdf1234!
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,9 +13,9 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
-    defer-datasource-initialization: false
+    defer-datasource-initialization: true
   flyway:
-    locations: classpath:/db/migration
+    locations: classpath:db/migration
     sql-migration-suffixes: .sql
-    baseline-on-migrate: true          # flyway_schema_history 테이블을 자동으로 생성할지 여부
+    baseline-on-migrate: true
     baseline-version: 0

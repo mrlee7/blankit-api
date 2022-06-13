@@ -2,27 +2,24 @@ package com.blankit.api.domain.entity;
 
 import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 public class MemberAuth {
 
-    @Id @GeneratedValue
-    @Column(name = "MEMBER_AUTH_ID")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_auth_id")
     private Long id;
 
-    @Column(name = "AUTH_TOKEN")
+    @Column(name = "auth_token")
     private String authToken;
 
-    @Column(name = "CREATED_DATE")
+    @Column(name = "created_date")
     private LocalDateTime createdDate;
 
-    @Column(name = "MODIFIED_DATE")
+    @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
 
 }

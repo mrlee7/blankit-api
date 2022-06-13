@@ -1,6 +1,15 @@
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+        flywayVersion = "8.5.12"
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.6.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+    id "org.flywaydb.flyway" version "8.5.12"
     id 'java'
 }
 
@@ -19,10 +28,34 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'mysql:mysql-connector-java'
 
+    /**
+     * Database packages
+     */
+    implementation 'mysql:mysql-connector-java'
+    implementation 'com.querydsl:querydsl-jpa'
+
+    /**
+     * Swagger packages
+     */
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+    /**
+     * queryDsl Library
+     */
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+    annotationProcessor("jakarta.persistence:jakarta.persistence-api")
+    annotationProcessor("jakarta.annotation:jakarta.annotation-api")
+
+    /**
+     * Settings
+     */
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
 
@@ -31,8 +64,42 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+
+    /**
+     * flyway Library
+     */
+    implementation 'org.flywaydb:flyway-core' // Database migration 형상 관리
 }
 
 test {
     useJUnitPlatform()
+}
+
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main.java.srcDir querydslDir
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
+}
+
+flyway {
+    url= 'jdbc:mysql://localhost:3306/blankit'
+    user='blankitadmin'
+    password='asdf1234!'
+    locations=['classpath:db/migration']
 }

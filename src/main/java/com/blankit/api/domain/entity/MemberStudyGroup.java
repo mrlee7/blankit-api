@@ -7,20 +7,20 @@ import javax.persistence.*;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name = "MEMBER_STUDY_GROUP")
+@Table(name = "member_study_group")
 public class MemberStudyGroup {
 
     @Id
-    @GeneratedValue
-    @Column(name = "MEMBER_STUDY_GROUP_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_study_group_id")
     private Long id;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_MEMBER_MEMBERSTUDYGROUP"))
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(name = "FK_MEMBER_MEMBERSTUDYGROUP"))
     private Member member;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "STUDY_GROUP_ID", foreignKey = @ForeignKey(name = "FK_STUDYGROUP_MEMBERSTUDYGROUP"))
+    @JoinColumn(name = "study_group_id", foreignKey = @ForeignKey(name = "FK_STUDYGROUP_MEMBERSTUDYGROUP"))
     private StudyGroup studyGroup;
 
     @Convert(converter = BooleanToYNConverter.class)

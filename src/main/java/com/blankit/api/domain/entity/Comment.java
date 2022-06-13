@@ -7,18 +7,18 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "COMMMENT")
+@Table(name = "comment")
 public class Comment {
 
     @Id
-    @GeneratedValue
-    @Column(name="COMMENT_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="comment_id")
     private Long id;
 
-    @Column(name = "COMMENT_CONTENTS", nullable = false)
+    @Column(name = "comment_contents", nullable = false)
     private String commentContents;
 
-    @Column(name = "CREATED_DATE", nullable = false)
+    @Column(name = "created_date", nullable = false)
     @CreatedDate
     private LocalDateTime createdDate;
 
@@ -27,10 +27,10 @@ public class Comment {
     private  LocalDateTime modifiedDate;
     
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID", foreignKey = @ForeignKey(name = "FK_COMMENT_MEMBER"))
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(name = "FK_COMMENT_MEMBER"))
     private Member writerId;
 
     @ManyToOne
-    @JoinColumn(name = "TASK_ID", foreignKey = @ForeignKey(name = "FK_COMMENT_TASK"))
+    @JoinColumn(name = "task_id", foreignKey = @ForeignKey(name = "FK_COMMENT_TASK"))
     private Task task;
 }
