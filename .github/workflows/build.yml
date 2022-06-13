@@ -40,7 +40,7 @@ jobs:
       with:
         status: ${{ job.status }}
         author_name: Github Action Test
-        fields: repo,commit,message,author
+        fields: repo,commit,message,author # 추가 가능
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       if: always()
