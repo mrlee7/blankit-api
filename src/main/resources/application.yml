@@ -6,19 +6,15 @@ spring:
     init:
       mode: always
   datasource:
-    url: jdbc:mysql://localhost:3306/blankit
-    username: blankitadmin
-    password: asdf1234!
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:blankit
+    username: sa
+    password:
   jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
     show-sql: true
-    defer-datasource-initialization: false
-  flyway:
-    locations: classpath:/db/migration
-    sql-migration-suffixes: .sql
-    baseline-on-migrate: true          # flyway_schema_history 테이블을 자동으로 생성할지 여부
-    baseline-version: 0

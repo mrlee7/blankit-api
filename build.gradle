@@ -1,7 +1,6 @@
 buildscript {
     ext {
         queryDslVersion = "5.0.0"
-        flywayVersion = "8.5.12"
     }
 }
 
@@ -9,7 +8,6 @@ plugins {
     id 'org.springframework.boot' version '2.6.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
-    id "org.flywaydb.flyway" version "8.5.12"
     id 'java'
 }
 
@@ -64,11 +62,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-
-    /**
-     * flyway Library
-     */
-    implementation 'org.flywaydb:flyway-core' // Database migration 형상 관리
 }
 
 test {
@@ -95,11 +88,4 @@ configurations {
         extendsFrom annotationProcessor
     }
     querydsl.extendsFrom compileClasspath
-}
-
-flyway {
-    url= 'jdbc:mysql://localhost:3306/blankit'
-    user='blankitadmin'
-    password='asdf1234!'
-    locations=['classpath:db/migration']
 }
